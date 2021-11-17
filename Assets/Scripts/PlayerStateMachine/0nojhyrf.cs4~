@@ -1,0 +1,84 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerAttackState : PlayerBaseState
+{
+
+    public float damage = 10f;
+    public float range = 100f;
+
+    public PlayerAttackState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory)
+    {
+        RootState = true;
+    }
+
+
+
+    public override void EnterState() {
+
+        
+        Contxt.Animator.SetBool(Contxt.AttackingHash, true);
+       
+        Contxt.Particle.Play();
+
+
+    }
+
+    public override void UpdateState() 
+    {
+
+        CheckSwitchStates();
+        Debug.Log("attacking");
+
+    }
+
+    public override void ExitState() 
+    {
+        Contxt.Animator.SetBool(Contxt.AttackingHash, false);
+
+
+    }
+
+
+    public override void CheckSwitchStates()
+    {
+        
+         SwitchState(Factory.Grounded());
+
+        
+       
+
+    }
+
+    public override void InitializeSubStates()
+    {
+        if (!Contxt.MovePressed)
+        {
+            SetSubState(Factory.Idle());
+
+        }
+        else if (Contxt.MovePressed && !Contxt.RunPressed)
+        {
+            SetSubState(Factory.Walk());
+
+        }
+        else
+        {
+            SetSubState(Factory.Run());
+
+        }
+
+    }
+
+    void Shoot()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(Contxt.CharacterController.transform.position, Contxt.CharacterController.transform.forward, out hit, range))
+        {
+            Debug.Log(hit.transform.name);
+        }
+    }
+
+
+}

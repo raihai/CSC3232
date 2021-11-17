@@ -1,0 +1,62 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerAttackState : PlayerBaseState
+{
+    public PlayerAttackState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory) : base(currentContext, playerStateFactory)
+    {
+        RootState = true;
+        InitializeSubStates();
+    }
+    
+    public override void EnterState() {
+
+        Contxt.Animator.SetBool(Contxt.AttackingHash, true);
+        Contxt.Animator.SetBool(Contxt.WalkingHash, false);
+        Contxt.Animator.SetBool(Contxt.RunningHash, false);
+
+        Contxt.AppliedMoveX = 0;
+        Contxt.AppliedMoveZ = 0;
+        Contxt.Particle.Play();
+
+
+    }
+
+    public override void UpdateState() 
+    {
+
+        CheckSwitchStates();
+        Debug.Log("attack now workign");
+
+    }
+
+    public override void ExitState() 
+    {
+        Contxt.Animator.SetBool(Contxt.AttackingHash, false);
+
+
+    }
+
+
+    public override void CheckSwitchStates()
+    {
+        if (Contxt.CharacterController.isGrounded && !Contxt.IsAttackingPressed)
+        {
+            SwitchState(Factory.Grounded());
+
+        }
+       
+
+    }
+
+    public override void InitializeSubStates()
+    {
+
+       
+       
+    }
+
+
+
+}
