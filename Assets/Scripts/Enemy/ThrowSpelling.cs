@@ -9,6 +9,8 @@ public class ThrowSpelling : MonoBehaviour
 
     public AudioSource attackSound;
 
+    // active spell through instantiation of spell object 
+
     public void casting()
     {
 

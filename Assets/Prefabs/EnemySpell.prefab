@@ -18951,7 +18951,7 @@ GameObject:
   - component: {fileID: 3393792861460749703}
   m_Layer: 0
   m_Name: EnemySpell
-  m_TagString: Untagged
+  m_TagString: SpellEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19082,7 +19082,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 96b4af95a0314fe468ee358afaab04b1, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.407
+  m_Volume: 0.49
   m_Pitch: 1
   Loop: 0
   Mute: 0

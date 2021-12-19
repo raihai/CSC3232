@@ -16,6 +16,9 @@ TagManager:
   - PowerUpMagic
   - PowerUpHealth
   - Crystal
+  - ReturnDorr
+  - EnterDorr
+  - SpellEnemy
   layers:
   - Default
   - TransparentFX
@@ -25,10 +28,10 @@ TagManager:
   - UI
   - Enemy
   - 'Enviroment '
-  - 
-  - 
-  - 
-  - 
+  - Volume
+  - Barrier
+  - PlayerSpell
+  - Pet
   - 
   - 
   - 

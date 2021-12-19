@@ -8,17 +8,17 @@ using UnityEngine.InputSystem;
 public class OverworldPlayer : MonoBehaviour
 {
 
+    // reference 
+
     PlayerControl playerControl;
     CharacterController overWorldPlayer;
 
-    public GameObject gate;
+   
 
     // store player input values
     Vector2 currentMoveInput;
     Vector3 appliedMovement;
     bool isMovePressed;
-
- 
 
 
     public GameObject enterDoorWindow;
@@ -28,11 +28,11 @@ public class OverworldPlayer : MonoBehaviour
 
     public void Awake()
     {
-
+        // instantiate 
         playerControl = new PlayerControl();
         overWorldPlayer = GetComponent<CharacterController>();
 
-
+        // get user input
         playerControl.OverworldControls.Moves.started += OnMoveInput;
         playerControl.OverworldControls.Moves.canceled += OnMoveInput;
         playerControl.OverworldControls.Moves.performed += OnMoveInput;
@@ -43,11 +43,13 @@ public class OverworldPlayer : MonoBehaviour
         
     }
 
+
     void Update()
     {
         overWorldPlayer.Move(appliedMovement * Time.deltaTime);
     }
 
+    // calculate movement 
     void OnMoveInput(InputAction.CallbackContext context)
     {
         currentMoveInput = context.ReadValue<Vector2>();
@@ -57,7 +59,7 @@ public class OverworldPlayer : MonoBehaviour
     }
 
 
-
+    // trigger for door 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("DoorOne")){
@@ -80,6 +82,7 @@ public class OverworldPlayer : MonoBehaviour
         }
     }
 
+    // enable action map
     private void OnEnable()
     {
         playerControl.OverworldControls.Enable();

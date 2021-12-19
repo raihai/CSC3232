@@ -10,7 +10,6 @@ public class ChaseState : StateMachineBehaviour
     Transform player;
     float hitRange = 10;
 
-    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent = animator.GetComponent<NavMeshAgent>();
@@ -18,10 +17,9 @@ public class ChaseState : StateMachineBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-    // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
+    // Runs toward player when player is in range and transition into attack state
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Debug.Log("Attack state");
 
         agent.SetDestination(player.position);
 
@@ -33,22 +31,17 @@ public class ChaseState : StateMachineBehaviour
         }
     }
 
-    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent.SetDestination(agent.transform.position);
         agent.speed = 3;
     }
 
-    // OnStateMove is called right after Animator.OnAnimatorMove()
     override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // Implement code that processes and affects root motion
     }
 
-    // OnStateIK is called right after Animator.OnAnimatorIK()
     override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-       // Implement code that sets up animation IK (inverse kinematics)
     }
 }

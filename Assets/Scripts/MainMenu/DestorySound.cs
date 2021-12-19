@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class DestorySound : MonoBehaviour
 {
-    // Start is called before the first frame update
+    // destory menu sound 
+
     public void Start()
     {
         Destroy(gameObject, 3f);

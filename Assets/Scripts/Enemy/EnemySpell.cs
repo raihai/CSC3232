@@ -11,7 +11,7 @@ public class EnemySpell : MonoBehaviour
 
     public AudioSource enemySpell;
 
-    // play sound and register damage 
+    // play spell sound and register damage 
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -22,7 +22,7 @@ public class EnemySpell : MonoBehaviour
         {
             if (nearObject.tag == "Player")
             {
-                SimpleQuest.takeDamge(damageAmount);
+                SimpleQuest.TakeDamge(damageAmount);
                
             }
         }
